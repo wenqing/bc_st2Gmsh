@@ -28,8 +28,6 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    int i_dummy;
-    string s_dummy;
     while (!is.eof())
     {
         string s_buff;
@@ -52,13 +50,14 @@ int main(int argc, char* argv[])
 
             vector<string> var_names;
             vector<std::size_t> name_id(nn);
+            vector<std::size_t> id(nn);
             vector<double> x(nn);
             vector<double> y(nn);
             vector<double> z(nn);
             for (int i=0; i<nn; i++)
             {
                 double T;
-                is >> i_dummy >> s_buff
+                is >> id[i] >> s_buff
                    >> x[i] >> y[i] >> z[i] >> T >> ws;
 
                 std::size_t nm_id = 0;
@@ -90,7 +89,7 @@ int main(int argc, char* argv[])
 
             for (int i=0; i<nn; i++)
             {
-                *os[name_id[i]] << "Point(" << i << ") = {"
+                *os[name_id[i]] << "Point(" << id[i] << ") = {"
                                 <<  x[i] << ","
                                 <<  y[i] << ","
                                 <<  z[i] << ", ds};\n";
